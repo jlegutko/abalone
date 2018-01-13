@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %} | Abalone</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <ul id="navigation">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+        <li><a href="{{url_for('posts')}}">Posty</a></li>
+        <li><a href="{{url_for('about')}}">O mnie</a></li>
+    </ul>
+
+    <h1>Abalone</h1>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>Copyright <a href="{{ url_for('index') }}">Abalone</a></p>
+    </footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

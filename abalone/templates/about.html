@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}O mnie{% endblock %}
+{% block content %}
+    <h2>O mnie</h2>
+    <p>
+      Witaj na podstronie o autorze
+      {% if user %}
+        {{ user.name | striptags }}
+      {% endif %}
+    </p>
+{% endblock %}
