@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Board demo{% endblock %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column col-6 col-mx-auto">
+                    <div class="toast">
+                        <h3>Debugowanie.</h3>
+                        <p>{{ rule }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column col-12">
+                    <div class="board">
+                    {% for row in range(board.rows) %}
+                        <div class="board-row">
+                        {% for column in range(board.columns[row]) %}
+                            <div class="box box-{{ row }},{{ count_yz(row, column, 'y') }},{{ count_yz(row, column, 'z') }}">
+                                {% if (row, count_yz(row, column, 'y'), count_yz(row, column, 'z')) in player_white.positions %}
+                                    <a href="
+                                            {% if rule == '/game/<string:game_id>' %}
+                                                {{ url_for('select', game_id=game_id, coordinate_x=row, coordinate_y=count_yz(row, column, 'y'), coordinate_z=count_yz(row, column, 'z')) }}
+                                            {% elif rule == '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>' %}
+                                                {{ url_for('select_multiple', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, second_x=row, second_y=count_yz(row, column, 'y'), second_z=count_yz(row, column, 'z')) }}
+                                            {% elif rule== '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/<int:second_x>/<int:second_y>/<int:second_z>' %}
+                                                 {{ url_for('select', game_id=game_id, coordinate_x=row, coordinate_y=count_yz(row, column, 'y'), coordinate_z=count_yz(row, column, 'z')) }}
+                                            {% endif %}"
+                                       class="ball ball-white
+                                       {% if (row==coordinate_x and count_yz(row, column, 'y')==coordinate_y and count_yz(row, column, 'z')==coordinate_z)
+                                               or (row==second_x and count_yz(row, column, 'y')==second_y and count_yz(row, column, 'z')==second_z) %}ball-selected
+                                       {% endif %}"></a>
+                                {% elif (row, count_yz(row, column, 'y'), count_yz(row, column, 'z')) in player_black.positions %}
+                                    <a href="
+                                            {% if rule == '/game/<string:game_id>' %}
+                                                {{ url_for('select', game_id=game_id, coordinate_x=row, coordinate_y=count_yz(row, column, 'y'), coordinate_z=count_yz(row, column, 'z')) }}
+                                            {% elif rule == '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>' %}
+                                                {{ url_for('select_multiple', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, second_x=row, second_y=count_yz(row, column, 'y'), second_z=count_yz(row, column, 'z')) }}
+                                            {% elif rule== '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/<int:second_x>/<int:second_y>/<int:second_z>' %}
+                                                 {{ url_for('select', game_id=game_id, coordinate_x=row, coordinate_y=count_yz(row, column, 'y'), coordinate_z=count_yz(row, column, 'z')) }}
+                                            {% endif %}"
+                                       class="ball ball-black
+                                       {% if (row==coordinate_x and count_yz(row, column, 'y')==coordinate_y and count_yz(row, column, 'z')==coordinate_z)
+                                               or (row==second_x and count_yz(row, column, 'y')==second_y and count_yz(row, column, 'z')==second_z) %}ball-selected
+                                       {% endif %}"></a>
+                                {% elif rule == '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>' %}
+                                    <a href="{{ url_for('move', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, to_x=row, to_y=count_yz(row, column, 'y'), to_z=count_yz(row, column, 'z')) }}" class="slot"></a>
+                                {% elif rule== '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/<int:second_x>/<int:second_y>/<int:second_z>' %}
+                                    <a href="{{ url_for('move_double', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, second_x=second_x, second_y=second_y, second_z=second_z, to_x=row, to_y=count_yz(row, column, 'y'), to_z=count_yz(row, column, 'z')) }}" class="slot"></a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

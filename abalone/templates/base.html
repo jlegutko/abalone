@@ -1,27 +1,47 @@
-<html>
+<html lang="pl">
 <head>
-    <title>{% block title %}{% endblock %} | Abalone</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}{% endblock %} | Abalone</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre-exp.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <ul id="navigation">
-        <li><a href="{{url_for('index')}}">Home</a></li>
-        <li><a href="{{url_for('posts')}}">Posty</a></li>
-        <li><a href="{{url_for('about')}}">O mnie</a></li>
-    </ul>
+    <header class="navbar section-small">
+        <section class="navbar-section">
+            <a href="{{ url_for('about') }}" class="btn btn-link">O grze</a>
+        </section>
+        <section class="navbar-center">
+            <h1>
+                <a href="{{ url_for('index') }}" class="navbar-logo">
+                    <span class="visuallyhidden">
+                        Abalone
+                    </span>
+                </a>
+            </h1>
+        </section>
+        <section class="navbar-section">
+            <a href="https://github.com/lisizawodnik/abalone" class="btn btn-link">GitHub</a>
+        </section>
+    </header>
 
-    <h1>Abalone</h1>
-    <div id="content">
+    <main>
         {% block content %}{% endblock %}
-    </div>
+    </main>
 
-    <footer>
-        <p>Copyright <a href="{{ url_for('index') }}">Abalone</a></p>
+    <footer class="section bg-gray container">
+        <div class="columns">
+            <div class="column col-12">
+                <p>Copyright &copy; Jadwiga Legutko</p>
+            </div>
+        </div>
     </footer>
-
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>
