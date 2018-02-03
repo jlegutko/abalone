@@ -8,6 +8,9 @@
                     <div class="toast">
                         <h3>Debugowanie.</h3>
                         <p>{{ rule }}</p>
+                        <pre><code>
+                            {{ turn }}
+                        </code></pre>
                     </div>
                 </div>
             </div>
@@ -45,9 +48,11 @@
                                                or (row==second_x and count_yz(row, column, 'y')==second_y and count_yz(row, column, 'z')==second_z) %}ball-selected
                                        {% endif %}"></a>
                                 {% elif rule == '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>' %}
-                                    <a href="{{ url_for('move', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, to_x=row, to_y=count_yz(row, column, 'y'), to_z=count_yz(row, column, 'z')) }}" class="slot"></a>
+                                    {% if ((row==coordinate_x + 1 and count_yz(row, column, 'y')==coordinate_y + 1) or (row==coordinate_x - 1 and count_yz(row, column, 'z')==coordinate_z + 1) or (row==coordinate_x - 1 and count_yz(row, column, 'y')==coordinate_y - 1) or (count_yz(row, column, 'y')==coordinate_y + 1 and count_yz(row, column, 'z')==coordinate_z + 1) or (row==coordinate_x + 1 and count_yz(row, column, 'z')==coordinate_z - 1) or (count_yz(row, column, 'y')==coordinate_y - 1 and count_yz(row, column, 'z')==coordinate_z - 1)) %}
+                                        <a href="{{ url_for('move', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, to_x=row, to_y=count_yz(row, column, 'y'), to_z=count_yz(row, column, 'z')) }}" class="slot"></a>
+                                    {% endif %}
                                 {% elif rule== '/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/<int:second_x>/<int:second_y>/<int:second_z>' %}
-                                    <a href="{{ url_for('move_double', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, second_x=second_x, second_y=second_y, second_z=second_z, to_x=row, to_y=count_yz(row, column, 'y'), to_z=count_yz(row, column, 'z')) }}" class="slot"></a>
+                                    <a href="{{ url_for('move_multiple', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y, coordinate_z=coordinate_z, second_x=second_x, second_y=second_y, second_z=second_z, to_x=row, to_y=count_yz(row, column, 'y'), to_z=count_yz(row, column, 'z')) }}" class="slot"></a>
                                 {% endif %}
                             </div>
                         {% endfor %}

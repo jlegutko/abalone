@@ -25,11 +25,6 @@ def start():
     return render_template('start.html')
 
 
-@app.route('/o-grze')
-def about():
-    return render_template('about.html')
-
-
 @app.route('/create/<string:name>')
 def create(name):
     game_id = str(uuid.uuid4())
@@ -37,6 +32,11 @@ def create(name):
     flash('Game started!', 'success')
 
     return redirect(url_for('game', game_id=game_id))
+
+
+@app.route('/o-grze')
+def about():
+    return render_template('about.html')
 
 
 @app.route('/games')
@@ -65,11 +65,16 @@ def select(game_id, coordinate_x, coordinate_y, coordinate_z):
     :param int coordinate_x: This is a x coordinate of the piece that player selected.
     :param int coordinate_y: This is a y coordinate of the piece that player selected.
     :param int coordinate_z: This is a z coordinate of the piece that player selected.
-    :return render_template():
+    :return render_template():{{ url_for('index') }}"
     """
+    # Checking whether select piece is a piece
 
-    return render_template('board.html', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
-                           coordinate_z=coordinate_z)
+    if (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_black.positions and games[game_id].turn == 0 \
+            or (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_white.positions and games[game_id].turn == 1:
+        return render_template('board.html', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
+                               coordinate_z=coordinate_z)
+    else:
+        return redirect(url_for('game', game_id=game_id))
 
 
 @app.route('/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/'
@@ -81,93 +86,49 @@ def select_multiple(game_id, coordinate_x, coordinate_y, coordinate_z, second_x,
     :param int coordinate_y: This is a y coordinate of the piece that player selected.
     :return render_template():
     """
+    # Checking whether double select is not into the same piece
+    if coordinate_x == second_x and coordinate_y == second_y and coordinate_z == second_z:
+        return redirect(url_for('select', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
+                                coordinate_z=coordinate_z))
+    # Checking whether select piece is a piece
+    elif (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_black.positions \
+        and (second_x, second_y, second_z) in games[game_id].player_black.positions \
+            and games[game_id].turn == 0:
+        return render_template('board.html', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
+                               coordinate_z=coordinate_z, second_x=second_x, second_y=second_y, second_z=second_z)
+    elif (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_white.positions \
+            and (second_x, second_y, second_z) in games[game_id].player_white.positions and games[game_id].turn == 1:
+            return render_template('board.html', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
+                                   coordinate_z=coordinate_z, second_x=second_x, second_y=second_y, second_z=second_z)
 
-    return render_template('board.html', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
-                           coordinate_z=coordinate_z, second_x=second_x, second_y=second_y, second_z=second_z)
+    return redirect(url_for('select', game_id=game_id, coordinate_x=coordinate_x, coordinate_y=coordinate_y,
+                            coordinate_z=coordinate_z))
 
 
 @app.route('/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/move/<int:to_x>/'
            '<int:to_y>/<int:to_z>')
 def move(game_id, coordinate_x, coordinate_y, coordinate_z, to_x, to_y, to_z):
 
-    if (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_white.positions:
-        games[game_id].player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
-        games[game_id].player_white.positions.add((to_x, to_y, to_z))
-    elif (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_black.positions:
-        games[game_id].player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
-        games[game_id].player_black.positions.add((to_x, to_y, to_z))
-
-    return redirect(url_for('game', game_id=game_id))
+    # Checking in which places ball can move
+    if games[game_id].move(coordinate_x, coordinate_y, coordinate_z, to_x, to_y, to_z):
+        games[game_id].change_turn()
+        return redirect(url_for('game', game_id=game_id))
+    else:
+        flash('Zły ruch', 'error')
+        return redirect(url_for('game', game_id=game_id))
 
 
 @app.route('/game/<string:game_id>/select/<int:coordinate_x>/<int:coordinate_y>/<int:coordinate_z>/<int:second_x>/'
            '<int:second_y>/<int:second_z>/move/<int:to_x>/<int:to_y>/<int:to_z>')
-def move_double(game_id, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x, to_y, to_z):
+def move_multiple(game_id, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x, to_y, to_z):
 
-    if (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_white.positions and \
-            (second_x, second_y, second_z) in games[game_id].player_white.positions and\
-            ((math.fabs(coordinate_x - second_x) == 2 and ((math.fabs(coordinate_y - second_y) == 2 or
-                                                            math.fabs(coordinate_z - second_z) == 2)))) \
-            or ((math.fabs(coordinate_y - second_y) == 2 and ((math.fabs(coordinate_x - second_x) == 2
-                                                               or math.fabs(coordinate_z - second_z) == 2)))) \
-            or ((math.fabs(coordinate_z - second_z) == 2 and ((math.fabs(coordinate_y - second_y) == 2
-                                                               or math.fabs(coordinate_x - second_x) == 2)))):
-
-        if math.fabs(to_y - coordinate_y) < math.fabs(to_y - second_y) or math.fabs(to_x - coordinate_x) < math.fabs(
-                to_x - second_x):
-            #player_white.positions.remove((second_x, second_y, second_z))
-            games[game_id].player_white.positions.add((to_x, to_y, to_z))
-
-        elif math.fabs(to_y - second_y) < math.fabs(to_y - coordinate_y) or math.fabs(to_x - second_x) < math.fabs(
-                to_x - coordinate_x):
-            #player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
-            games[game_id].player_white.positions.add((to_x, to_y, to_z))
-
-    elif (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_black.positions and \
-            (second_x, second_y, second_z) in games[game_id].player_black.positions and \
-            ((math.fabs(coordinate_x - second_x) == 2 and ((math.fabs(coordinate_y - second_y) == 2 or
-                                                            math.fabs(coordinate_z - second_z) == 2)))) \
-            or ((math.fabs(coordinate_y - second_y) == 2 and ((math.fabs(coordinate_x - second_x) == 2
-                                                               or math.fabs(coordinate_z - second_z) == 2)))) \
-            or ((math.fabs(coordinate_z - second_z) == 2 and ((math.fabs(coordinate_y - second_y) == 2
-                                                               or math.fabs(coordinate_x - second_x) == 2)))):
-
-        if math.fabs(to_y - coordinate_y) < math.fabs(to_y - second_y) or math.fabs(to_x - coordinate_x) < math.fabs(
-                to_x - second_x):
-            #player_black.positions.remove((second_x, second_y, second_z))
-            games[game_id].player_black.positions.add((to_x, to_y, to_z))
-
-
-        elif math.fabs(to_y - second_y) < math.fabs(to_y - coordinate_y) or math.fabs(to_x - second_x) < math.fabs(
-                to_x - coordinate_x):
-            #player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
-            games[game_id].player_black.positions.add((to_x, to_y, to_z))
-
-    elif (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_white.positions and (second_x, second_y, second_z) \
-            in games[game_id].player_white.positions and math.fabs(coordinate_x - second_x) < 2 and \
-            math.fabs(coordinate_y - second_y) < 2 and math.fabs(coordinate_z - second_z) < 2:
-
-        if math.fabs(to_y - coordinate_y) < math.fabs(to_y - second_y) or math.fabs(to_x - coordinate_x) < math.fabs(to_x - second_x):
-            games[game_id].player_white.positions.remove((second_x, second_y, second_z))
-            games[game_id].player_white.positions.add((to_x, to_y, to_z))
-
-        elif math.fabs(to_y - second_y) < math.fabs(to_y - coordinate_y) or math.fabs(to_x - second_x) < math.fabs(to_x - coordinate_x):
-            games[game_id].player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
-            games[game_id].player_white.positions.add((to_x, to_y, to_z))
-
-    elif (coordinate_x, coordinate_y, coordinate_z) in games[game_id].player_black.positions and (second_x, second_y, second_z) \
-            in games[game_id].player_black.positions and math.fabs(coordinate_x - second_x) < 2 and \
-            math.fabs(coordinate_y - second_y) < 2 and math.fabs(coordinate_z - second_z) < 2:
-
-        if math.fabs(to_y - coordinate_y) < math.fabs(to_y - second_y) or math.fabs(to_x - coordinate_x) < math.fabs(to_x - second_x):
-            games[game_id].player_black.positions.remove((second_x, second_y, second_z))
-            games[game_id].player_black.positions.add((to_x, to_y, to_z))
-
-        elif math.fabs(to_y - second_y) < math.fabs(to_y - coordinate_y) or math.fabs(to_x - second_x) < math.fabs(to_x - coordinate_x):
-            games[game_id].player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
-            games[game_id].player_black.positions.add((to_x, to_y, to_z))
-
-    return redirect(url_for('game', game_id=game_id))
+    if games[game_id].move_multiple(coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
+                                   to_y, to_z):
+        games[game_id].change_turn()
+        return redirect(url_for('game', game_id=game_id))
+    else:
+        flash('Zły ruch', 'error')
+        return redirect(url_for('game', game_id=game_id))
 
 
 @app.errorhandler(404)
@@ -201,6 +162,7 @@ def utility_processor():
             board={'rows': games[game_id].rows, 'columns': games[game_id].columns},
             player_black=games[game_id].player_black,
             player_white=games[game_id].player_white,
+            turn=games[game_id].turn
             )
     else:
         return dict(
