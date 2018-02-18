@@ -15,7 +15,12 @@
 <body>
     <header class="navbar section-small">
         <section class="navbar-section">
+            <a href="{{ url_for('about') }}" class="btn btn-link"></a>
+            <a href="{{ url_for('register') }}" class="btn btn-link">Rejestracja</a>
+            <a href="{{ url_for('login') }}" class="btn btn-link">Logowanie</a>
+            <a href="{{ url_for('start') }}" class="btn btn-link">Nowa gra</a>
             <a href="{{ url_for('about') }}" class="btn btn-link">O grze</a>
+
         </section>
         <section class="navbar-center">
             <h1>
@@ -30,11 +35,24 @@
             <a href="https://github.com/lisizawodnik/abalone" class="btn btn-link">GitHub</a>
         </section>
     </header>
+    <main class="main section">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="messages-container">
+                    {% for category, message in messages %}
+                        <div class="container container--wide">
+                            <div class="message {{ category }}" data-component="message">
+                                <p>{{ message }}</p>
+                                <span class="close big"></span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
 
-    <main>
         {% block content %}{% endblock %}
     </main>
-
     <footer class="section bg-gray container">
         <div class="columns">
             <div class="column col-12">
@@ -43,5 +61,7 @@
         </div>
     </footer>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+{% block script %}{% endblock %}
 </body>
 </html>

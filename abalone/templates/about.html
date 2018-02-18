@@ -19,11 +19,11 @@
             <div class="column col-12">
                 <h2>Zagraj w Abalone</h2>
                 <p>Rozpocznij rozgrywkę wybierając jedną z opcji.</p>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('game', multiplayer=False) }}">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('start') }}">
                     <span class="icon icon-apps" aria-hidden="true"></span>
                     Zagraj z komputerem
                 </a>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('game', multiplayer=True) }}">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('start') }}">
                     <span class="icon icon-people" aria-hidden="true"></span>
                     Zagraj z drugim graczem
                 </a>

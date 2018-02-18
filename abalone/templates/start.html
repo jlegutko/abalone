@@ -1,23 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Start{% endblock %}
 {% block content %}
-    <div class="container">
-        <h2>Start a new game</h2>
+    <section class="section container grid-lg">
+        <div class="columns">
+            <div class="column col-12">
+                <h2>Utwórz nową grę</h2>
         <form method="post" action="{{ url_for('start') }}" class="form">
-            <div class="form-item">
-                <label class="large strong">Name of the game <span class="req">*</span></label>
-                <input class="big" type="text" name="name" required>
-                <div class="desc">Enter the name of your game.</div>
+            <div class="form-group">
+                <label class="form-label" for="input-example-1">Wprowadź nazwę dla swojej gry</label>
+                    <div class="col-6">
+                        <input class="form-input" type="text" name="name" required id="input-example-1" placeholder="Nazwa gry">
+                    </div>
             </div>
-            <div class="form-item form-checkboxes">
-                <p class="large strong">Who do you want to play against? <span class="req">*</span></p>
-                <label class="checkbox"><input type="radio" name="gametype" value="computer" required disabled> Computer</label>
-                <label class="checkbox"><input type="radio" name="gametype" value="human" required> Another player</label>
-            </div>
-            <div class="form-item">
-                <button>Start a game</button>
-                <a class="button secondary outline" href="{{ url_for('index') }}">Cancel</a>
+            <div class="form-group">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('index') }}">Powrót</a>
+                <button class="btn btn-primary btn-lg">Rozpocznij grę</button>
             </div>
         </form>
-    </div>
+    </section>
 {% endblock %}

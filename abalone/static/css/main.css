@@ -1,8 +1,8 @@
 /* Helpers */
 
 .section {
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
 }
 
 .section-small {
@@ -13,7 +13,7 @@
 /* General */
 
 body {
-    background: #ececf6;
+    background: #e4e4ee;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -65,7 +65,7 @@ h1 {
 /* Board */
 
 .board {
-
+    margin-left: 10rem;
 }
 
 .board-row {
@@ -76,7 +76,7 @@ h1 {
 .box {
     width: 5rem;
     height: 5rem;
-    border: 3px solid #ccc;
+    border: 3px solid #bbbbbb;
     border-radius: 50%;
     margin: 0 0.2rem;
 }
@@ -100,18 +100,55 @@ h1 {
     box-shadow: 0 0 1rem 0.25rem #007bff;
 }
 
+.ball-to-push {
+    box-shadow: 0 0 1rem 0.25rem #b8092f;
+}
+
 .slot {
-    background: #ccccdd;
+    background: #b9b9ca;
     display: block;
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
 
+.score_board{
+    background: #9597a8;
+    height: 14rem;
+    margin-right: 3rem;
+    margin-left: 2rem;
+    color: #dcd9e1;
+    padding:2rem 2rem 0 2rem;
+}
+
+.white_point{
+    background: #fff;
+    margin: 0.25rem 0 1.5rem 1rem;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+}
+
+.black_point{
+    background: #000;
+    margin-left: 1rem;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+}
+
+.scores{
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+
 /* Footer */
 
 footer {
     text-align: center;
+    height: 3rem;
 }
 
 footer p {
