@@ -1,53 +1,54 @@
 {% extends "base.html" %}
 {% block title %}Register{% endblock %}
 {% block content %}
-    <div class="container">
-        <h2>Login</h2>
-        <form method="post" action="{{ url_for('register') }}" class="form">
-            <div class="form-item">
-                <label class="large strong" for="username">
-                    Username
-                    <span class="req">*</span>
-                    {% if error and error['username-taken'] %}<span class="error">{{ error['username-taken'] }}</span>{% endif %}
-                </label>
-                <div class="prepend">
-                    <span>
-                        <span class="fas fa-user"></span>
-                    </span>
-                    <input class="big" type="text" name="username" id="username" {% if username %}value="{{ username }}"{% endif %}required>
+    <section class="section container grid-lg">
+        <div class="columns">
+            <div class="column col-12">
+                {{ user }}
+                <h2>Rejestracja</h2>
+                <div class="columns">
+                    <div class="column col-9 col-sm-12">
+                        <form method="post" action="{{ url_for('register') }}" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-3">
+                                    <label class="form-label info" for="username">
+                                        Login
+                                    {% if error and error['username-taken'] %}<span class="error">{{ error['username-taken'] }}</span>{% endif %}
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <input id="username" name="username" class="form-input input-lg" type="text" {% if username %}value="{{ username }}"{% endif %}required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-3">
+                                    <label class="form-label info" for="password">
+                                        Hasło
+                                    {% if error and error['password-short'] %}<span class="error">{{ error['password-short'] }}</span>{% endif %}
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <input id="password" class="form-input input-lg" type="password" name="password" minlength="6" required>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <div class="col-3">
+                                    <label class="form-label info" for="password">
+                                        Powtórz hasło
+                                    {% if error and error['password-different'] %}<span class="error">{{ error['password-different'] }}</span>{% endif %}
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <input id="repeat-password" class="form-input input-lg" name="repeat-password" type="password" minlength="6"  required>
+                                </div>
+                            </div>
+                             <a class="btn btn-error btn-lg button-right-log" href="{{ url_for('index') }}"><i class="fas fa-undo"></i></a>
+                             <button class="btn btn-primary btn-lg button-left-reg">Zarejestruj się</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-item">
-                <label class="large strong" for="password">
-                    Password
-                    <span class="req">*</span>
-                    {% if error and error['password-short'] %}<span class="error">{{ error['password-short'] }}</span>{% endif %}
-                </label>
-                <div class="prepend">
-                    <span>
-                        <span class="fas fa-key"></span>
-                    </span>
-                    <input class="big" type="password" name="password" id="password" minlength="6" required>
-                </div>
-                <div class="desc">At least 6 characters long.</div>
-            </div>
-            <div class="form-item">
-                <label class="large strong" for="repeat-password">
-                    Repeat Password
-                    <span class="req">*</span>
-                    {% if error and error['password-different'] %}<span class="error">{{ error['password-different'] }}</span>{% endif %}
-                </label>
-                <div class="prepend">
-                    <span>
-                        <span class="fas fa-key"></span>
-                    </span>
-                    <input class="big" type="password" name="repeat-password" id="repeat-password" minlength="6" required>
-                </div>
-            </div>
-            <div class="form-item">
-                <button>Register</button>
-                <a class="button secondary outline" href="{{ url_for('index') }}">Cancel</a>
-            </div>
-        </form>
-    </div>
+        </div>
+    </section>
+
 {% endblock %}

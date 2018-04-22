@@ -1,17 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Logowanie{% endblock %}
-
 {% block content %}
     <section class="section container grid-lg">
         <div class="columns">
             <div class="column col-12">
+                {{ user }}
                 <h2>Logowanie</h2>
-                <form action="{{ url_for('login') }}" method="post">
-                    <input name="username" type="text">
-                    <input name="password" type="password">
-                    <label class="checkbox"><input type="checkbox" name="remember_me" value="yes"> Zapamiętaj mnie</label>
-                    <button>Zaloguj się</button>
-                </form>
+                <p class="info"> Zaloguj się, aby mieć możliwośc tworzenia i dołączania do gier.</p>
+                <div class="columns">
+                    <div class="column col-9 col-sm-12">
+                        <form method="post" action="{{ url_for('login') }}" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-2">
+                                    <label class="form-label info" for="username">
+                                        Login
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <input id="username" name="username" class="form-input input-lg" placeholder="" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-2">
+                                    <label class="form-label info" for="password">
+                                        Hasło
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <input id="password" class="form-input input-lg" placeholder="" name="password" type="password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-checkbox checkbox-left"><input type="checkbox" name="remember_me" value="yes">
+                                    <i class="form-icon">
+                                    </i>
+                                    Zapamiętaj mnie
+                                </label>
+                            </div>
+                             <a class="btn btn-error btn-lg button-right-log" href="{{ url_for('index') }}"><i class="fas fa-undo "></i></a>
+                             <button class="btn btn-primary btn-lg button-left-log">Zaloguj się</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

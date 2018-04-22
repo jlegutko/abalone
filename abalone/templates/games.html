@@ -1,26 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Active games{% endblock %}
 {% block content %}
-    <div class="container">
-        <h2>Active games</h2>
-        <p class="large">Below you can see a list of all active games.</p>
-        {% if games %}
-            <div class="row gutters">
-            {% for game in games %}
-                <div class="col col-4">
-                    <a class="game" href="{{ url_for('game', game_id=game) }}">
-                        {% if games[game].gametype == 'human' %}
-                            <span class="label black">Human vs. human</span>
-                        {% else %}
-                            <span class="label focus">Human vs. computer</span>
-                        {% endif %}
-                        <h3>{{ games[game].name }}</h3>
-                    </a>
-                </div>
-            {% endfor %}
+     <section class="section container grid-lg">
+        <div class="columns">
+            <div class="column col-12">
+
+                <h2>Aktywne gry</h2>
+                <p class="info">Lista gier, do których możesz dołączyć</p>
+                {% if games %}
+                    {% for game in games %}
+                             <div class="input-group game-element">
+                                 <h4>{{ games[game].name }}</h4>
+                                 <a class="btn btn-primary btn-lg btn-join" href="{{ url_for('join', game_id=game) }}"><i class="fas fa-user-plus"></i> Dołącz</a>
+                             </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="info">Nie ma żadnych aktwnych gier, do których można dołączyć.</p>
+                {% endif %}
             </div>
-        {% else %}
-            <p>No games currently. Why don't you <a href="{{ url_for('start') }}">start one</a>?</p>
-        {% endif %}
-    </div>
+        </div>
+     </section>
 {% endblock %}

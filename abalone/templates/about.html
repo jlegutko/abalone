@@ -5,26 +5,27 @@
     <section class="section container grid-lg">
         <div class="columns">
             <div class="column col-md-6">
-                <h2>O grze</h2>
-                <p>Laurent Levi i jego przyjaciel, Michael Lalet, pracowali w centrum informatycznym, gdzie projektowali gry komputerowe. Często odwiedzał ich syn kolegi, który pewnego dnia poskarżył się im na brak przyjaciół, z którymi mógłby spędzać czas. Laurent i Michael obiecali chłopcu, że specjalnie dla niego wymyślą grę.</p>
-                <p>W nazwie zawarte jest przesłanie gry: ab to łaciński przedrostek oznaczający nigdy, alone w języku angielskim znaczy sam.</p>
+                <h2>Historia</h2>
+                <p class="info-1">Laurent Levi i jego przyjaciel, Michael Lalet, pracowali w centrum informatycznym, gdzie projektowali gry komputerowe. Często odwiedzał ich syn kolegi, który pewnego dnia poskarżył się im na brak przyjaciół, z którymi mógłby spędzać czas. Laurent i Michael obiecali chłopcu, że specjalnie dla niego wymyślą grę.</p>
+                <p class="info-1">W nazwie zawarte jest przesłanie gry: ab to łaciński przedrostek oznaczający nigdy, alone w języku angielskim znaczy sam.</p>
             </div>
             <div class="column col-md-6">
-                <h3>Więcej</h3>
-                <p>Abalone to logiczna gra planszowa dla dwóch graczy. Dwóch graczy zasiada do sześciokątnej planszy z wgłębieniami, w której umieszcza się po 14 białych kul i 14 czarnych. Gracze na przemian popychają swoje kule tak, aby ostatecznie wypchnąć poza planszę 6 kul przeciwnika. Przepycha się 1, 2 lub 3 swoje bile (znajdujące się w jednej linii) do przodu, do tyłu lub na boki, przy czym 2 moje bile mogą popchnąć 1 bilę przeciwnika, 3 moje bile mogą popchnąć do 2 bil przeciwnika.</p>
+                <h2>Zasady gry</h2>
+                <p class="info-1">Abalone to logiczna gra planszowa dla dwóch graczy. Dwóch graczy zasiada do sześciokątnej planszy z wgłębieniami, w której umieszcza się po 14 białych kul i 14 czarnych. Gracze na przemian popychają swoje kule tak, aby ostatecznie wypchnąć poza planszę 6 kul przeciwnika. Przepycha się 1, 2 lub 3 swoje bile (znajdujące się w jednej linii) do przodu, do tyłu lub na boki, przy czym 2 moje bile mogą popchnąć 1 bilę przeciwnika, 3 moje bile mogą popchnąć do 2 bil przeciwnika.</p>
             </div>
         </div>
         <div class="divider"></div>
         <div class="columns">
             <div class="column col-12">
                 <h2>Zagraj w Abalone</h2>
-                <p>Rozpocznij rozgrywkę wybierając jedną z opcji.</p>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('start') }}">
-                    <span class="icon icon-apps" aria-hidden="true"></span>
+                <p class="info"><a href="{{ url_for('login') }}">Zaloguj się</a> aby rozpocząć rozgrywkę.
+                    <br> Jeśli nie masz konta, <a href="{{ url_for('register') }}">zarejestruj się.</a></p>
+                <a class="btn btn-primary btn-lg btn-right" href="{{ url_for('index') }}">
+                <i class="fas fa-laptop"></i>
                     Zagraj z komputerem
                 </a>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('start') }}">
-                    <span class="icon icon-people" aria-hidden="true"></span>
+                <a class="btn btn-primary btn-lg btn-lft" href="{{ url_for('start') }}">
+                    <i class="far fa-user"></i>
                     Zagraj z drugim graczem
                 </a>
             </div>

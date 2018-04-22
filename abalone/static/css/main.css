@@ -113,7 +113,7 @@ h1 {
 }
 
 .score_board{
-    background: #9597a8;
+    background: #b1b3c4;
     height: 14rem;
     margin-right: 3rem;
     margin-left: 2rem;
@@ -123,7 +123,7 @@ h1 {
 
 .white_point{
     background: #fff;
-    margin: 0.25rem 0 1.5rem 1rem;
+    margin: 0.5rem 0 1.5rem 1.5rem;
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -132,7 +132,7 @@ h1 {
 
 .black_point{
     background: #000;
-    margin-left: 1rem;
+    margin: 0.5rem 0 1.5rem 1.5rem;
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -142,6 +142,78 @@ h1 {
 .scores{
     height: 3rem;
     margin-bottom: 2rem;
+}
+
+.info{
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+.info-1{
+    font-size: 0.88rem;
+}
+
+.button-left{
+    margin-top: 0.7rem;
+    margin-left: 14.4rem;
+}
+
+.button-right{
+    margin-top: 1rem;
+}
+
+.button-left-log{
+    margin-top: 1rem;
+    margin-left: 15.8rem;
+}
+
+.button-left-reg{
+    margin-top: 1rem;
+    margin-left: 17.5rem;
+}
+.button-right-log{
+    margin-top: 0.7rem;
+}
+
+.checkbox-left{
+    margin-left: 6rem;
+}
+
+.btn-lft{
+    margin-left: 0.5rem;
+    margin-top: 0.7rem;
+}
+
+.btn-right{
+    margin-top: 0.7rem;
+}
+
+.messages-container{
+    margin-top: -3rem;
+}
+
+.mrg-left{
+    margin-left: 1.5rem;
+}
+
+.mrg-right{
+    margin-right: 1.5rem;
+}
+
+.btn-join{
+    margin-left: 2rem;
+}
+
+.game-element{
+    margin-top: 1rem;
+}
+
+.black-player{
+    color: black;
+}
+
+.white-player{
+    color:white;
 }
 
 /* Footer */

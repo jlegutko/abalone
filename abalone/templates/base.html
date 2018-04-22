@@ -11,15 +11,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre-exp.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/spectre-icons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
 </head>
 <body>
     <header class="navbar section-small">
-        <section class="navbar-section">
-            <a href="{{ url_for('about') }}" class="btn btn-link"></a>
-            <a href="{{ url_for('register') }}" class="btn btn-link">Rejestracja</a>
-            <a href="{{ url_for('login') }}" class="btn btn-link">Logowanie</a>
-            <a href="{{ url_for('start') }}" class="btn btn-link">Nowa gra</a>
-            <a href="{{ url_for('about') }}" class="btn btn-link">O grze</a>
+        <section class="navbar-section mrg-left">
+            {% if g.user.is_authenticated %}
+                 <a href="{{ url_for('active_games') }}" class="btn btn-link"><i class="fas fa-users"></i> Aktywne gry</a>
+                 <a href="{{ url_for('start') }}" class="btn btn-link"><i class="fas fa-plus"></i> Nowa gra</a>
+                 <a href="{{ url_for('my_games') }}" class="btn btn-link"><i class="far fa-user"></i> Moje gry</a>
+            {% else %}
+                <a href="{{ url_for('register') }}" class="btn btn-link"><i class="fas fa-pencil-alt"></i> Rejestracja</a>
+                <a href="{{ url_for('login') }}" class="btn btn-link"><i class="fas fa-sign-in-alt"></i> Logowanie</a>
+            {% endif %}
+            <a href="{{ url_for('about') }}" class="btn btn-link"><i class="fas fa-gamepad"></i> O grze</a>
 
         </section>
         <section class="navbar-center">
@@ -31,8 +36,11 @@
                 </a>
             </h1>
         </section>
-        <section class="navbar-section">
-            <a href="https://github.com/lisizawodnik/abalone" class="btn btn-link">GitHub</a>
+        <section class="navbar-section mrg-right">
+            {% if g.user.is_authenticated %}
+                <a href="{{ url_for('logout') }}" class="btn btn-link"><i class="fas fa-sign-out-alt"></i> Wyloguj się</a>
+            {% endif %}
+            <a href="https://github.com/lisizawodnik/abalone" class="btn btn-link"><i class="fab fa-github"></i> GitHub</a>
         </section>
     </header>
     <main class="main section">
@@ -62,6 +70,8 @@
     </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/fontawesome.js') }}"></script>
 {% block script %}{% endblock %}
 </body>
+
 </html>

@@ -51,7 +51,6 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'success')
     return redirect(url_for('index'))
 
 
@@ -88,13 +87,14 @@ def register():
 
 
 @app.route('/start', methods=['POST', 'GET']) # new_game
+@login_required
 def start():
+
     if request.method == 'POST':
         name = request.form['name']
         creator = current_user.id
         game_id = str(uuid.uuid4())
         games[game_id] = (Game.Game(game_id, name, creator))
-        flash('Game started!', 'success')
         if not games[game_id].save_game():
             flash('Error occurred while saving the game!', 'error')
         return redirect(url_for('game', game_id=game_id))
@@ -104,6 +104,26 @@ def start():
 @app.route('/o-grze')
 def about():
     return render_template('about.html')
+
+
+@app.route('/active_games')
+@login_required
+def active_games():
+    join_games = dict()
+    for single_game in games:
+        if games[single_game].guest is False and current_user.id != games[single_game].creator:
+            join_games[single_game] = games[single_game]
+    return render_template('games.html', games=join_games)
+
+
+@app.route('/my_games')
+@login_required
+def my_games():
+    own_games = dict()
+    for single_game in games:
+        if current_user.id == games[single_game].creator or current_user.id == games[single_game].guest:
+            own_games[single_game] = games[single_game]
+    return render_template('my_games.html', games=own_games)
 
 
 @app.route('/game/<string:game_id>')
@@ -124,7 +144,7 @@ def game(game_id):
             flash('Remis', 'success')
         return render_template('board.html', game_id=game_id)
     elif not check_for_existence(games, game_id):
-        flash('Such a game does not exist. It might have ended.', 'error')
+        flash('Gra nie istnieje', 'error')
     return redirect(url_for('index'))
 
 
@@ -135,17 +155,16 @@ def join(game_id):
         # No guest and current_user is not creator. All is OK.
         if games[game_id].guest is False and current_user.id != games[game_id].creator:
             games[game_id].set_guest(current_user.id)
-            flash('You have joined this game and play as White Player!', 'success')
             games[game_id].save_timestamp()
             if not games[game_id].save_game():
                 flash('Error occurred while saving the game!', 'error')
             return redirect(url_for('game', game_id=game_id))
         # There is a guest, or no guest and current_user is creator. Not OK to join.
         elif games[game_id].guest is True or current_user.id == games[game_id].creator:
-            flash('You cannot join this game!', 'error')
+            flash('Nie możesz dołączyć do tej gry!', 'error')
             return redirect(url_for('game', game_id=game_id))
     else:
-        flash('Such a game does not exist. It might have ended.', 'error')
+        flash('Podana gra nie istnieje', 'error')
     return redirect(url_for('index'))
 
 

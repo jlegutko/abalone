@@ -5,13 +5,14 @@
         <div class="columns">
             <div class="column col-12">
                 <h2>Witaj w grze Abalone</h2>
-                <p>Rozpocznij rozgrywkę wybierając jedną z opcji.</p>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('start') }}">
-                    <span class="icon icon-apps" aria-hidden="true"></span>
+                <p class="info"><a href="{{ url_for('login') }}">Zaloguj się</a> aby rozpocząć rozgrywkę.
+                    <br> Jeśli nie masz konta, <a href="{{ url_for('register') }}">zarejestruj się.</a></p>
+                <a class="btn btn-primary btn-lg btn-right" href="{{ url_for('index') }}">
+                <i class="fas fa-laptop"></i>
                     Zagraj z komputerem
                 </a>
-                <a class="btn btn-primary btn-lg" href="{{ url_for('start') }}">
-                    <span class="icon icon-people" aria-hidden="true"></span>
+                <a class="btn btn-primary btn-lg btn-lft" href="{{ url_for('start') }}">
+                    <i class="far fa-user"></i>
                     Zagraj z drugim graczem
                 </a>
             </div>

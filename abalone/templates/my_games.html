@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Active games{% endblock %}
+{% block content %}
+   <section class="section container grid-lg">
+        <div class="columns">
+            <div class="column col-12">
+
+                <h2>Moje gry</h2>
+                <p class="info">Lista gier które utworzyłeś oraz tych, w których uczestniczyłeś, bądź uszestniczysz.</p>
+                {% if games %}
+                    {% for game in games %}
+                             <div class="column col-6 game-element">
+                                 <a href="{{ url_for('game', game_id=game)}}"><h4>{{ games[game].name }}</h4></a>
+                             </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="info">Nie utworzyłeś jeszcze żadnych gier.</p>
+                {% endif %}
+            </div>
+        </div>
+     </section>
+{% endblock %}

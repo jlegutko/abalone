@@ -986,6 +986,7 @@ class Game:
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y + 1, to_z + 1) not in self.borders_of_board_for_x:
@@ -993,6 +994,7 @@ class Game:
                             self.player_white.positions.add((to_x, to_y + 2, to_z + 2))
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y-second_y) == 1 and fabs(coordinate_z - second_z) == 1:
                         return False
@@ -1005,6 +1007,7 @@ class Game:
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1012,6 +1015,7 @@ class Game:
                     self.player_white.positions.add((to_x, to_y + 1, to_z + 1))
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_y == coordinate_y - 1 and to_z == coordinate_z - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1031,6 +1035,7 @@ class Game:
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y - 1, to_z - 1) not in self.borders_of_board_for_x:
@@ -1038,6 +1043,7 @@ class Game:
                             self.player_white.positions.add((to_x, to_y - 2, to_z - 2))
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y - second_y) == 1 and fabs(
                           coordinate_z - second_z) == 1:
@@ -1051,6 +1057,7 @@ class Game:
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1058,6 +1065,7 @@ class Game:
                     self.player_white.positions.add((to_x, to_y - 1, to_z - 1))
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def black_sumito_for_sec_x(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1079,6 +1087,7 @@ class Game:
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y + 1, to_z + 1) not in self.borders_of_board_for_x:
@@ -1086,6 +1095,7 @@ class Game:
                             self.player_white.positions.add((to_x, to_y + 2, to_z + 2))
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y-second_y) == 1 and fabs(coordinate_z - second_z) == 1:
                         return False
@@ -1098,6 +1108,7 @@ class Game:
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1105,6 +1116,7 @@ class Game:
                     self.player_white.positions.add((to_x, to_y + 1, to_z + 1))
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_y == second_y - 1 and to_z == second_z - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1124,6 +1136,7 @@ class Game:
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y - 1, to_z - 1) not in self.borders_of_board_for_x:
@@ -1131,6 +1144,7 @@ class Game:
                             self.player_white.positions.add((to_x, to_y - 2, to_z - 2))
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y - second_y) == 1 and fabs(
                           coordinate_z - second_z) == 1:
@@ -1144,6 +1158,7 @@ class Game:
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1151,6 +1166,7 @@ class Game:
                     self.player_white.positions.add((to_x, to_y - 1, to_z - 1))
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def white_sumito_for_coord_x(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1172,6 +1188,7 @@ class Game:
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla białych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y + 1, to_z + 1) not in self.borders_of_board_for_x:
@@ -1179,6 +1196,7 @@ class Game:
                             self.player_black.positions.add((to_x, to_y + 2, to_z + 2))
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y-second_y) == 1 and fabs(coordinate_z - second_z) == 1:
                         return False
@@ -1191,6 +1209,7 @@ class Game:
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla białych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1198,6 +1217,7 @@ class Game:
                     self.player_black.positions.add((to_x, to_y + 1, to_z + 1))
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_y == coordinate_y - 1 and to_z == coordinate_z - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1217,6 +1237,7 @@ class Game:
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla białych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y - 1, to_z - 1) not in self.borders_of_board_for_x:
@@ -1224,6 +1245,7 @@ class Game:
                             self.player_black.positions.add((to_x, to_y - 2, to_z - 2))
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y - second_y) == 1 and fabs(
                           coordinate_z - second_z) == 1:
@@ -1237,6 +1259,7 @@ class Game:
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla białych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1244,6 +1267,7 @@ class Game:
                     self.player_black.positions.add((to_x, to_y - 1, to_z - 1))
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def white_sumito_for_sec_x(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1265,6 +1289,7 @@ class Game:
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y + 1, to_z + 1) not in self.borders_of_board_for_x:
@@ -1272,6 +1297,7 @@ class Game:
                             self.player_black.positions.add((to_x, to_y + 2, to_z + 2))
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y-second_y) == 1 and fabs(coordinate_z - second_z) == 1:
                         return False
@@ -1284,6 +1310,7 @@ class Game:
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1291,6 +1318,7 @@ class Game:
                     self.player_black.positions.add((to_x, to_y + 1, to_z + 1))
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_y == second_y - 1 and to_z == second_z - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1310,6 +1338,7 @@ class Game:
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x, to_y - 1, to_z - 1) not in self.borders_of_board_for_x:
@@ -1317,6 +1346,7 @@ class Game:
                             self.player_black.positions.add((to_x, to_y - 2, to_z - 2))
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_x == second_x and fabs(coordinate_y - second_y) == 1 and fabs(
                           coordinate_z - second_z) == 1:
@@ -1330,6 +1360,7 @@ class Game:
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board_for_x:
@@ -1337,6 +1368,7 @@ class Game:
                     self.player_black.positions.add((to_x, to_y - 1, to_z - 1))
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def black_sumito_for_coord_y(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1359,6 +1391,7 @@ class Game:
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y, to_z - 1) not in self.borders_of_board:
@@ -1366,6 +1399,7 @@ class Game:
                             self.player_white.positions.add((to_x + 2, to_y, to_z - 2))
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1379,6 +1413,7 @@ class Game:
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1386,6 +1421,7 @@ class Game:
                     self.player_white.positions.add((to_x + 1, to_y, to_z - 1))
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == coordinate_x - 1 and to_z == coordinate_z + 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1405,6 +1441,7 @@ class Game:
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y, to_z + 1) not in self.borders_of_board:
@@ -1412,6 +1449,7 @@ class Game:
                             self.player_white.positions.add((to_x - 2, to_y, to_z + 2))
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1425,6 +1463,7 @@ class Game:
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1432,6 +1471,7 @@ class Game:
                     self.player_white.positions.add((to_x - 1, to_y, to_z + 1))
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def black_sumito_for_sec_y(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1454,6 +1494,7 @@ class Game:
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y, to_z - 1) not in self.borders_of_board:
@@ -1461,6 +1502,7 @@ class Game:
                             self.player_white.positions.add((to_x + 2, to_y, to_z - 2))
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1474,6 +1516,7 @@ class Game:
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1481,6 +1524,7 @@ class Game:
                     self.player_white.positions.add((to_x + 1, to_y, to_z - 1))
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == second_x - 1 and to_z == second_z + 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1500,6 +1544,7 @@ class Game:
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y, to_z + 1) not in self.borders_of_board:
@@ -1507,6 +1552,7 @@ class Game:
                             self.player_white.positions.add((to_x - 2, to_y, to_z + 2))
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1520,6 +1566,7 @@ class Game:
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1527,6 +1574,7 @@ class Game:
                     self.player_white.positions.add((to_x - 1, to_y, to_z + 1))
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def white_sumito_for_coord_y(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1549,6 +1597,7 @@ class Game:
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y, to_z - 1) not in self.borders_of_board:
@@ -1556,6 +1605,7 @@ class Game:
                             self.player_black.positions.add((to_x + 2, to_y, to_z - 2))
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1569,6 +1619,7 @@ class Game:
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1576,6 +1627,7 @@ class Game:
                     self.player_black.positions.add((to_x + 1, to_y, to_z - 1))
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == coordinate_x - 1 and to_z == coordinate_z + 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1595,6 +1647,7 @@ class Game:
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y, to_z + 1) not in self.borders_of_board:
@@ -1602,6 +1655,7 @@ class Game:
                             self.player_black.positions.add((to_x - 2, to_y, to_z + 2))
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1615,6 +1669,7 @@ class Game:
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1622,6 +1677,7 @@ class Game:
                     self.player_black.positions.add((to_x - 1, to_y, to_z + 1))
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def white_sumito_for_sec_y(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1644,6 +1700,7 @@ class Game:
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y, to_z - 1) not in self.borders_of_board:
@@ -1651,6 +1708,7 @@ class Game:
                             self.player_black.positions.add((to_x + 2, to_y, to_z - 2))
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1664,6 +1722,7 @@ class Game:
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1671,6 +1730,7 @@ class Game:
                     self.player_black.positions.add((to_x + 1, to_y, to_z - 1))
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == second_x - 1 and to_z == second_z + 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1690,6 +1750,7 @@ class Game:
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y, to_z + 1) not in self.borders_of_board:
@@ -1697,6 +1758,7 @@ class Game:
                             self.player_black.positions.add((to_x - 2, to_y, to_z + 2))
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_y == second_y and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_z - second_z) == 1:
@@ -1710,6 +1772,7 @@ class Game:
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1717,6 +1780,7 @@ class Game:
                     self.player_black.positions.add((to_x - 1, to_y, to_z + 1))
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def black_sumito_for_coord_z(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1739,6 +1803,7 @@ class Game:
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y + 1, to_z) not in self.borders_of_board:
@@ -1746,6 +1811,7 @@ class Game:
                             self.player_white.positions.add((to_x + 2, to_y + 2, to_z))
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -1759,6 +1825,7 @@ class Game:
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1766,6 +1833,7 @@ class Game:
                     self.player_white.positions.add((to_x + 1, to_y + 1, to_z))
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == coordinate_x - 1 and to_y == coordinate_y - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1785,6 +1853,7 @@ class Game:
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y - 1, to_z) not in self.borders_of_board:
@@ -1792,6 +1861,7 @@ class Game:
                             self.player_white.positions.add((to_x - 2, to_y - 2, to_z))
                             self.player_black.positions.remove((second_x, second_y, second_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -1805,6 +1875,7 @@ class Game:
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1812,6 +1883,7 @@ class Game:
                     self.player_white.positions.add((to_x - 1, to_y - 1, to_z))
                     self.player_black.positions.remove((second_x, second_y, second_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def black_sumito_for_sec_z(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1834,6 +1906,7 @@ class Game:
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y + 1, to_z) not in self.borders_of_board:
@@ -1841,6 +1914,7 @@ class Game:
                             self.player_white.positions.add((to_x + 2, to_y + 2, to_z))
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -1854,6 +1928,7 @@ class Game:
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1861,6 +1936,7 @@ class Game:
                     self.player_white.positions.add((to_x + 1, to_y + 1, to_z))
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == second_x - 1 and to_y == second_y - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1880,6 +1956,7 @@ class Game:
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
                             self.points_for_black += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y - 1, to_z) not in self.borders_of_board:
@@ -1887,6 +1964,7 @@ class Game:
                             self.player_white.positions.add((to_x - 2, to_y - 2, to_z))
                             self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_black.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -1900,6 +1978,7 @@ class Game:
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
                     self.points_for_black += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1907,6 +1986,7 @@ class Game:
                     self.player_white.positions.add((to_x - 1, to_y - 1, to_z))
                     self.player_black.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_black.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def white_sumito_for_coord_z(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -1929,6 +2009,7 @@ class Game:
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y + 1, to_z) not in self.borders_of_board:
@@ -1936,6 +2017,7 @@ class Game:
                             self.player_black.positions.add((to_x + 2, to_y + 2, to_z))
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -1949,6 +2031,7 @@ class Game:
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -1956,6 +2039,7 @@ class Game:
                     self.player_black.positions.add((to_x + 1, to_y + 1, to_z))
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == coordinate_x - 1 and to_y == coordinate_y - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -1975,6 +2059,7 @@ class Game:
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y - 1, to_z) not in self.borders_of_board:
@@ -1982,6 +2067,7 @@ class Game:
                             self.player_black.positions.add((to_x - 2, to_y - 2, to_z))
                             self.player_white.positions.remove((second_x, second_y, second_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -1995,6 +2081,7 @@ class Game:
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -2002,6 +2089,7 @@ class Game:
                     self.player_black.positions.add((to_x - 1, to_y - 1, to_z))
                     self.player_white.positions.remove((second_x, second_y, second_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def white_sumito_for_sec_z(self, coordinate_x, coordinate_y, coordinate_z, second_x, second_y, second_z, to_x,
@@ -2024,6 +2112,7 @@ class Game:
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x + 1, to_y + 1, to_z) not in self.borders_of_board:
@@ -2031,6 +2120,7 @@ class Game:
                             self.player_black.positions.add((to_x + 2, to_y + 2, to_z))
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                     # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -2044,6 +2134,7 @@ class Game:
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -2051,6 +2142,7 @@ class Game:
                     self.player_black.positions.add((to_x + 1, to_y + 1, to_z))
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
 
         elif to_x == second_x - 1 and to_y == second_y - 1:
             # sytuacja kiedy jest więcej niż jedna kulka przeciwnika
@@ -2070,6 +2162,7 @@ class Game:
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
                             self.points_for_white += 1
+                            return True
                             # punkt dla czarnych
                         # sytuacja kiedy nie jest na granicy
                         elif (to_x - 1, to_y - 1, to_z) not in self.borders_of_board:
@@ -2077,6 +2170,7 @@ class Game:
                             self.player_black.positions.add((to_x - 2, to_y - 2, to_z))
                             self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                             self.player_white.positions.add((to_x, to_y, to_z))
+                            return True
                         # jest po równo dwie kule
                     elif coordinate_z == second_z and fabs(coordinate_x - second_x) == 1 and fabs(
                             coordinate_y - second_y) == 1:
@@ -2090,6 +2184,7 @@ class Game:
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
                     self.points_for_white += 1
+                    return True
                     # punkt dla czarnych
                 # jeśli nie jest na granicy
                 elif (to_x, to_y, to_z) not in self.borders_of_board:
@@ -2097,6 +2192,7 @@ class Game:
                     self.player_black.positions.add((to_x - 1, to_y - 1, to_z))
                     self.player_white.positions.remove((coordinate_x, coordinate_y, coordinate_z))
                     self.player_white.positions.add((to_x, to_y, to_z))
+                    return True
         return False
 
     def check_end_of_game(self, points_for_black, points_for_white):

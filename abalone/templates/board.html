@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Board demo{% endblock %}
+{% block title %}Board{% endblock %}
 {% block content %}
     <section class="section">
         <div class="container">
@@ -442,16 +442,20 @@
                 <div class="column col-4 col-ml-auto">
                     <div class="score_board">
                         <div class="scores">
-                            <h4> Punkty gracza 'nazwa_gracza'</h4>
+                            <h4 class="black-player"><i class="fas fa-user"></i> Punkty gracza {{ creator.username }}</h4>
                             {% for point in range(points_for_black) %}
                                 <div class="white_point"></div>
                             {% endfor %}
                         </div>
                         <div class="scores">
-                            <h4> Punkty gracza 'nazwa_gracza'</h4>
-                            {% for point in range(points_for_white) %}
-                                <div class="black_point"></div>
-                            {% endfor %}
+                            {% if guest %}
+                                <h4 class="white-player"><i class="fas fa-user"></i> Punkty gracza {{ guest.username }}</h4>
+                                {% for point in range(points_for_white) %}
+                                    <div class="black_point"></div>
+                                {% endfor %}
+                            {% else %}
+                                <h4>Brak drugiego gracza, zaczekaj aż dołączy.</h4>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -460,7 +464,7 @@
     </section>
 {% endblock %}
 {% block script %}
-    <input class="hidden" aria-hidden="true" value="{{ game_id }}" id="game_id">
+    <input class="text-hide" aria-hidden="true" value="{{ game_id }}" id="game_id">
     <script>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
         // Force refresh

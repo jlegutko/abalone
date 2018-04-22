@@ -12,8 +12,7 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 # SQL
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://15_ciszczon:M6t8t4k2g7@localhost/15_ciszczon'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://abalone:abalone@localhost/abalone'  # localhost
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://15_legutko:A3p1z2h6j5@localhost/15_legutko'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
